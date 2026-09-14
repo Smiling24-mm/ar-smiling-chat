@@ -21,6 +21,33 @@
 <section class="section" id="about"><h2>✦ ABOUT & EDUCATION</h2><div class="rule"></div><div class="two"><div class="card"><div class="eyebrow">ABOUT ME</div><p>Hi, I'm Mint! I love creating cute characters, colorful worlds, and little stories through games, art, and animation.</p></div><div class="card education"><div class="eyebrow">EDUCATION</div><p><strong>RAJAMANGALA UNIVERSITY OF TECHNOLOGY RATTANAKOSIN</strong><span>Faculty of Architecture and Design<br>Game & Animation Design</span></p></div></div></section>
 <section class="section" id="skills"><h2>✦ SKILLS</h2><div class="rule"></div><div class="skills"><div class="skill">◆<b>Unity</b></div><div class="skill">✦<b>Clip Studio Paint</b></div><div class="skill">◇<b>Autodesk Maya</b></div><div class="skill">◈<b>Blender</b></div><div class="skill">✧<b>Canva</b></div><div class="skill">◉<b>OBS Studio</b></div><div class="skill">▶<b>CapCut</b></div><div class="skill">◆<b>ZBrush</b></div></div></section>
 <section class="section" id="epona"><h2>✦ EPONA — AR EXPERIENCE</h2><div class="rule"></div><div class="card ar-card"><div><div class="eyebrow">MARKER-BASED AUGMENTED REALITY</div><p>Open the dedicated AR page, allow camera access, then point your camera at the tracker to bring Epona to life.</p><a class="btn gold" href="ar.html">OPEN AR EXPERIENCE →</a></div><img class="marker" src="assets/tracker.png" alt="Tracker marker"></div></section>
+<section class="section" id="helmet">
+  <h2>✦ 3D PROJECT — DAMAGED HELMET</h2>
+  <div class="rule"></div>
+
+  <div class="card">
+    <div class="eyebrow">3D MODEL SHOWCASE</div>
+
+    <model-viewer
+      src="assets/DamagedHelmet.glb"
+      camera-controls
+      auto-rotate
+      shadow-intensity="1"
+      exposure="1"
+      alt="Damaged Helmet 3D Model">
+    </model-viewer>
+
+    <div style="text-align:center;">
+      <h3 style="font-family:Cinzel;color:var(--gold2);letter-spacing:2px;">
+        DAMAGED HELMET
+      </h3>
+
+      <p style="color:var(--muted);">
+        A 3D model from the Khronos glTF Sample Assets.
+      </p>
+    </div>
+  </div>
+</section>
 <section class="section" id="contact"><h2>✦ LET'S CONNECT</h2><div class="rule"></div><div class="contact"><div class="card"><small>E-MAIL</small><p>gorapin157@gmail.com</p></div><div class="card"><small>PHONE</small><p>0637495741</p></div><div class="card"><small>INSTAGRAM</small><p><a href="https://instagram.com/smiling_art04" target="_blank">@smiling_art04</a></p></div><div class="card"><small>GITHUB</small><p><a href="https://github.com/Smiling24-mm-" target="_blank">Smiling24-mm-</a></p></div></div></section>
 </main><footer><strong>DREAM IT · DRAW IT · BUILD IT · MAKE IT COME ALIVE.</strong><p>© Korapin Chaengchan · Mint's Fantasy 3D & Animation Portfolio</p></footer>
 <script>document.addEventListener('click',e=>{for(let i=0;i<11;i++){const s=document.createElement('span');s.className='spark';s.textContent=['✦','✧','⋆','·'][Math.floor(Math.random()*4)];s.style.left=e.clientX+'px';s.style.top=e.clientY+'px';const a=Math.random()*Math.PI*2,r=22+Math.random()*65;s.style.setProperty('--x',Math.cos(a)*r+'px');s.style.setProperty('--y',Math.sin(a)*r+'px');s.style.fontSize=8+Math.random()*12+'px';document.body.appendChild(s);setTimeout(()=>s.remove(),850)}});</script>
