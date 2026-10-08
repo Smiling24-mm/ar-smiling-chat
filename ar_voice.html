@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>AR Aisha</title>
+
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
+
+  <style>
+    body { margin: 0; overflow: hidden; }
+    #hint {
+      position: fixed; left: 0; right: 0; bottom: 30px;
+      text-align: center; color: #fff; font-family: sans-serif;
+      font-size: 16px; z-index: 10; pointer-events: none;
+      text-shadow: 0 0 6px #000;
+    }
+  </style>
+</head>
+
+<body>
+<div id="hint">แตะหน้าจอ 1 ครั้ง แล้วส่องกล้องไปที่รูป</div>
+
+<a-scene
+  mindar-image="imageTargetSrc: ./targets-4.mind;"
+  vr-mode-ui="enabled: false"
+  device-orientation-permission-ui="enabled: false">
+
+  <a-assets>
+    <a-asset-item id="model0" src="./anime_chibi_girl__aisha_by_seraphim.glb"></a-asset-item>
+    <audio id="voice0" src="./voice.mp3" preload="auto"></audio>
+  </a-assets>
+
+  <a-entity id="target0" mindar-image-target="targetIndex: 0">
+    <a-gltf-model
+      src="#model0"
+      animation-mixer
+      position="0 0 0"
+      rotation="0 0 0"
+      scale="0.5 0.5 0.5">
+    </a-gltf-model>
+  </a-entity>
+
+  <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+</a-scene>
+
+<script>
+window.addEventListener("load", function () {
+  var target = document.getElementById("target0");
+  var audio  = document.getElementById("voice0");
+  var hint   = document.getElementById("hint");
+
+  // สแกนเจอรูป -> เล่นเสียงตั้งแต่ต้น
+  target.addEventListener("targetFound", function () {
+    hint.style.display = "none";
+    audio.currentTime = 0;
+    audio.play().catch(function (e) { console.log("เล่นเสียงไม่ได้:", e); });
+  });
+
+  // รูปหลุดจากกล้อง -> หยุดเสียง
+  target.addEventListener("targetLost", function () {
+    audio.pause();
+  });
+
+  // ปลดล็อกเสียงบนมือถือ (ต้องแตะจอก่อน 1 ครั้ง)
+  function unlockAudio() {
+    audio.play().then(function () {
+      audio.pause();
+      audio.currentTime = 0;
+    }).catch(function () {});
+    document.removeEventListener("click", unlockAudio);
+    document.removeEventListener("touchstart", unlockAudio);
+  }
+  document.addEventListener("click", unlockAudio);
+  document.addEventListener("touchstart", unlockAudio);
+});
+</script>
+</body>
+</html>
